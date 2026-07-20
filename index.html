@@ -65,6 +65,23 @@
       <div class="em-splash-text">yuklanmoqda…</div>
     </div>
   </div>
+  <!-- Splash fallback: JS ishlamasa ham 3 soniyada yo'qoladi -->
+  <style>
+    @keyframes splashAutoHide {
+      0%   { opacity: 1; visibility: visible; }
+      85%  { opacity: 1; visibility: visible; }
+      100% { opacity: 0; visibility: hidden; pointer-events: none; }
+    }
+    .em-splash {
+      animation: splashAutoHide 3s ease forwards;
+    }
+    .em-splash.hidden {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      animation: none !important;
+    }
+  </style>
 
   <!-- Audio button -->
   <button type="button" class="em-audio-btn" id="audioBtn" title="Fon musiqasi" aria-label="Fon musiqasi">🔇</button>
