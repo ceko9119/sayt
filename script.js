@@ -236,46 +236,43 @@
      ROLES DATA (33 roles)
      ============================================================ */
   const ROLES = [
-    // TINCH (14)
-    { name: 'Shahar aholisi',     type: 'civ',  icon: '👤', desc: 'Oddiy fuqaro. Mafiyani toping va ovoz bering.', meta: 'Kun ovozida qatnashadi · shaxsiy maxsus qobiliyati yo'q' },
-    { name: 'Tergovchi',          type: 'civ',  icon: '🔍', desc: 'Har tunda bitta shaxsni tekshiradi — mafiyami yoki yo\'q.', meta: 'Tunda harakatlanadi · kuchli axborot roli' },
-    { name: 'Doktor',             type: 'civ',  icon: '💊', desc: 'Tunda bitta kishini o\'lim va blokladdan himoya qiladi.', meta: 'O\'zini ham himoya qila oladi (1 marta)' },
-    { name: 'Snayper',            type: 'civ',  icon: '🎯', desc: 'O\'yin davomida bitta marta otish imkoniga ega.', meta: 'Nishon to\'g\'ri bo\'lsa davom etadi · noto\'g\'ri bo\'lsa chiqadi' },
-    { name: 'Himoyachi',          type: 'civ',  icon: '🛡', desc: 'Mafiya hujumidan bir kishini kecha himoyalaydi.', meta: 'Doktordan farqi: tergovchi ko\'rmaydi uni' },
-    { name: 'Jurnalist',          type: 'civ',  icon: '📰', desc: 'Har kechasi bir kishining rolini aniqlaydi.', meta: 'Tekshiruv natijasi "umumiy" turiga qarab keladi' },
-    { name: 'Mayor',              type: 'civ',  icon: '🎖', desc: 'Ovozda ikki ovoz berish imkoniga ega.', meta: 'Roli ochiq yoki yopiq bo\'lishi mumkin' },
-    { name: 'Sehrgar',            type: 'civ',  icon: '🔮', desc: 'Bitta kishining rolini ko\'radi — bir marta.', meta: 'Noyob bir martalik qobiliyat' },
-    { name: 'Qo\'riqchi',         type: 'civ',  icon: '👁', desc: 'Tunda bir kishini kuzatadi — kim bordi-yu keldi.', meta: 'Harakat izini ko\'radi, ammo kimligini emas' },
-    { name: 'Psixolog',           type: 'civ',  icon: '🧠', desc: 'Bir kishini blokda ushlab qo\'yadi, harakatini to\'xtatadi.', meta: 'Doktor va mafiyani bloklaydi' },
-    { name: 'Advokat',            type: 'civ',  icon: '⚖️', desc: 'Kunduzi bir kishini chiqarishdan himoya qiladi.', meta: 'Ovoz natijasini bekor qila oladi' },
-    { name: 'Razvedkachi',        type: 'civ',  icon: '🕵️', desc: 'Mafiya a\'zolarini kechqurun kuzatadi.', meta: 'Kim kimga hujum qilganini ko\'radi' },
-    { name: 'Politsiya boshlig\'i', type: 'civ', icon: '👮', desc: 'Tergovchi va Himoyachini biladi — ular yashirinadi.', meta: 'Qo\'shimcha ma\'lumot kanaliga ega' },
-    { name: 'Muhandis',           type: 'civ',  icon: '🔧', desc: 'Bir hududni "qurshov"ga oladi — tunda harakat mumkin emas.', meta: 'Blok zonasi o\'rnatadi' },
+    // TINCH FUQARO
+    { name: 'Fuqaro',       type: 'civ',  img: 'rollar/fuqaro.png',       desc: 'Oddiy shahar aholisi. Mafiyani toping va ovoz bering.', meta: 'Kun ovozida qatnashadi · maxsus qobiliyati yo\'q' },
+    { name: 'Doktor',       type: 'civ',  img: 'rollar/doktor.png',        desc: 'Tunda bitta kishini o\'lim va blokladdan himoya qiladi.', meta: 'O\'zini ham himoya qila oladi (1 marta)' },
+    { name: 'Komissar',     type: 'civ',  img: 'rollar/komissar.png',      desc: 'Har tunda bitta shaxsni tekshiradi — mafiyami yoki yo\'q.', meta: 'Tunda harakatlanadi · kuchli axborot roli' },
+    { name: 'Advokat',      type: 'civ',  img: 'rollar/advokat.png',       desc: 'Kunduzi bir kishini chiqarishdan himoya qiladi.', meta: 'Ovoz natijasini bekor qila oladi' },
+    { name: 'Jurnalist',    type: 'civ',  img: 'rollar/jurnalist.png',     desc: 'Har kechasi bir kishining rolini aniqlaydi.', meta: 'Tekshiruv natijasi umumiy turiga qarab keladi' },
+    { name: 'Qo\'riqchi',   type: 'civ',  img: 'rollar/qoriqchi.png',      desc: 'Tunda bir kishini kuzatadi — kim bordi-yu keldi.', meta: 'Harakat izini ko\'radi, ammo kimligini emas' },
+    { name: 'Serjant',      type: 'civ',  img: 'rollar/serjant.png',       desc: 'Ovozda ikki ovoz berish imkoniga ega. Shahar qo\'shinining sardori.', meta: 'Roli ochiq yoki yopiq bo\'lishi mumkin' },
+    { name: 'Ovchi',        type: 'civ',  img: 'rollar/ovchi.png',         desc: 'O\'yin davomida bitta marta otish imkoniga ega.', meta: 'Nishon to\'g\'ri bo\'lsa davom etadi · noto\'g\'ri bo\'lsa chiqadi' },
+    { name: 'Janob',        type: 'civ',  img: 'rollar/janob.png',         desc: 'Bir hududni qurshov ga oladi — tunda harakat mumkin emas.', meta: 'Blok zonasi o\'rnatadi' },
+    { name: 'Omadli',       type: 'civ',  img: 'rollar/omadli.png',        desc: 'O\'lim hujumlaridan tasodifiy omon qoladi.', meta: 'Har hujumda 50% omon qolish ehtimoli' },
+    { name: 'Kezuvchi',     type: 'civ',  img: 'rollar/kezuvchi.png',      desc: 'Shahar bo\'ylab sayohat qiladi — hech kim uni ko\'ra olmaydi.', meta: 'Tunda ko\'rinmas · axborot yig\'adi' },
 
-    // MAFIYA (9)
-    { name: 'Mafiya',             type: 'maf',  icon: '🔫', desc: 'Asosiy mafiya a\'zosi. Tunda bitta o\'yinchini o\'ldiradi.', meta: 'Mafiya guruhi bilan koordinatsiyada ishlaydi' },
-    { name: 'Don',                type: 'maf',  icon: '🤵', desc: 'Mafiya boshlig\'i. Tergovchi uni oddiy fuqaro deb ko\'radi.', meta: 'Eng kuchli mafiya roli · yashirin' },
-    { name: 'Qotil',              type: 'maf',  icon: '🗡', desc: 'Maxsus qotil — tunda ikki harakatlanish imkoni.', meta: 'Himoya qiluvchini aylanib o\'ta oladi (50% ehtimol)' },
-    { name: 'Josusvoy',          type: 'maf',  icon: '🕶', desc: 'Tinch fuqarolarning muloqotini eshitadi.', meta: 'Kecha guruh chatini ko\'radi' },
-    { name: 'Zaharlovchi',        type: 'maf',  icon: '🧪', desc: 'Zahar bilan o\'ldiradi — doktor ham saqlay olmaydi.', meta: 'Zahar effekti 2 kechada ko\'rinadi' },
-    { name: 'Qora beva',          type: 'maf',  icon: '🩸', desc: 'Mafiya — kunduzgi ovozda ko\'pchilikka tazyiq o\'tkazadi.', meta: 'Manipulatsiya qobiliyati bor' },
-    { name: 'Portlovchi',         type: 'maf',  icon: '💣', desc: 'O\'zini portlatib, qoʻshni o\'yinchilarni oʻldiradi.', meta: 'Bitta marta ishlatiladi — oxirgi chora' },
-    { name: 'Buzg\'unchi',        type: 'maf',  icon: '⚡', desc: 'Tergovchi tekshiruvini noto\'g\'ri natijaga o\'zgartiradi.', meta: 'Axborot urushi bo\'limi' },
-    { name: 'Manipulyator',       type: 'maf',  icon: '🎭', desc: 'Bitta tinch fuqaroni boshqaradi — uning ovozi mafiyaga ishlaydi.', meta: 'Ruhiy ta\'sir — 1 kecha' },
+    // MAFIYA
+    { name: 'Mafia',        type: 'maf',  img: 'rollar/mafia.png',         desc: 'Asosiy mafiya a\'zosi. Tunda bitta o\'yinchini o\'ldiradi.', meta: 'Mafiya guruhi bilan koordinatsiyada ishlaydi' },
+    { name: 'Don',          type: 'maf',  img: 'rollar/don.png',           desc: 'Mafiya boshlig\'i. Komissar uni oddiy fuqaro deb ko\'radi.', meta: 'Eng kuchli mafiya roli · yashirin identifikatsiya' },
+    { name: 'Qotil',        type: 'maf',  img: 'rollar/qotil.png',         desc: 'Maxsus qotil — tunda ikki harakatlanish imkoni.', meta: 'Himoya qiluvchini aylanib o\'ta oladi (50% ehtimol)' },
+    { name: 'Kissavur',     type: 'maf',  img: 'rollar/kissavur.png',      desc: 'Tinch fuqarolarning pulini o\'g\'irlaydi. Boylik yig\'adi.', meta: 'Iqtisodiy mafiya roli' },
+    { name: 'Virus',        type: 'maf',  img: 'rollar/virus.png',         desc: 'Zahar tarqatadi — doktor ham saqlay olmaydi.', meta: 'Zahar effekti 2 kechada ko\'rinadi' },
+    { name: 'Sotqin',       type: 'maf',  img: 'rollar/sotqin.png',        desc: 'Tinch fuqaro sifatida yashirinadi — ikki tomonni ham aldaydi.', meta: 'Eng xavfli yashirin mafiya roli' },
+    { name: 'Terminator',   type: 'maf',  img: 'rollar/terminator.png',    desc: 'To\'xtab bo\'lmaydigan qotil. Har kecha hujum qiladi.', meta: 'Himoyadan o\'ta oladi · kuchli hujum' },
+    { name: 'Qora Ritsar',  type: 'maf',  img: 'rollar/qora_ritsar.png',   desc: 'Zulmat ritsari. Kunduz ovozini manipulyatsiya qiladi.', meta: 'Ovoz urushi bo\'limi · kuchli ta\'sir' },
 
-    // NEYTRAL (5)
-    { name: 'Maniak',             type: 'solo', icon: '🔪', desc: 'Har kechasi bitta o\'yinchini o\'ldiradi. Maqsad — yolg\'iz g\'alaba.', meta: 'Mafiya ham, tinch ham dushman' },
-    { name: 'Masxaraboz',         type: 'solo', icon: '🃏', desc: 'Chiqarilsangiz g\'alaba. Ovozga tushiring!', meta: 'Aktyorlik va aldash zarur' },
-    { name: 'Anarchist',          type: 'solo', icon: '⚔️', desc: 'Mafiya va tinch fuqarolarni yo\'q qiladi. Yolg\'iz qoladi — yutadi.', meta: 'Ikki tomonlama dushman' },
-    { name: 'Oshiq',              type: 'solo', icon: '💘', desc: 'Sevgilisi bilan bog\'langan — biri o\'lsa, ikkalasi ham chiqadi.', meta: 'Birgalikda g\'alaba yoki mag\'lubiyat' },
-    { name: 'Arvoh',              type: 'solo', icon: '👻', desc: 'O\'lganidan keyin ham ovoz bera oladi.', meta: 'Kuchli endgame roli — chiqmaganlar bilmaydi' },
+    // NEYTRAL
+    { name: 'Joker',        type: 'solo', img: 'rollar/joker.png',         desc: 'Chiqarilsangiz g\'alaba. Ovozga tushiring!', meta: 'Aktyorlik va aldash zarur · yolg\'iz g\'alaba' },
+    { name: 'Bo\'ri',        type: 'solo', img: "rollar/bo'ri.png",         desc: 'Har kechasi bitta o\'yinchini o\'ldiradi. Maqsad — yolg\'iz g\'alaba.', meta: 'Mafiya ham, tinch ham dushman' },
+    { name: 'Tulki',        type: 'solo', img: 'rollar/tulki.png',         desc: 'Aldaydi, yashirinadi, omboridan foydalanadi. Eng hiylagar neytral.', meta: 'Hech kimga ishonmaydi · o\'z yo\'li bilan g\'alaba' },
+    { name: 'Qasoskor',     type: 'solo', img: 'rollar/qasoskor.png',      desc: 'Bitta dushmani bor — uni yo\'q qilsa g\'alaba.', meta: 'Maqsadli qasoskor · bir nishon' },
+    { name: 'Suidsid',      type: 'solo', img: 'rollar/suidsid.png',       desc: 'O\'zini o\'zi portlatish orqali dushmanni yo\'q qiladi.', meta: 'Oxirgi chora · birgalikda o\'lim' },
 
-    // DARK TRIAD (5)
-    { name: 'Triad Zulmat',       type: 'dark', icon: '🖤', desc: 'Dark Triad boshliq\'i. Ikki tomonni ham boshqaradi.', meta: 'Faqat /darkgame da · eng kuchli rol' },
-    { name: 'Triad Qo\'g\'irchoq', type: 'dark', icon: '🪆', desc: 'Bitta o\'yinchini qo\'g\'irchoqqa aylantiradi — roliga ega bo\'ladi.', meta: 'Rol o\'g\'irlash qobiliyati' },
-    { name: 'Triad Aql',          type: 'dark', icon: '🧿', desc: 'Boshqa o\'yinchilarning harakatlarini oldindan biladi.', meta: 'Bashorat qobiliyati · meta-o\'yinchi' },
-    { name: 'Triad Soya',         type: 'dark', icon: '🌑', desc: 'Ko\'rinmas harakat — hech qanday log da aks etmaydi.', meta: 'Ghost mode · izlanib bo\'lmaydi' },
-    { name: 'Triad Vassa',        type: 'dark', icon: '⛓', desc: 'Bir o\'yinchini o\'ziga zanjirlab qo\'yadi — harakatsiz qiladi.', meta: 'Kuchli bloklash + o\'lim bilan bog\'liq' },
+    // MAXSUS
+    { name: 'Aferist',      type: 'dark', img: 'rollar/aferist.png',       desc: 'Boshqa o\'yinchilarning rolini o\'g\'irlaydi va ularga aylanadi.', meta: 'Rol o\'g\'irlash · eng murakkab rol' },
+    { name: 'Aktyor',       type: 'dark', img: 'rollar/aktyor.png',        desc: 'Istalgan rolni o\'ynaydi — haqiqiy roli hech qachon aniqlanmaydi.', meta: 'Kamuflyaj ustasi · ko\'rinmas identifikatsiya' },
+    { name: 'Gazabkor',     type: 'dark', img: 'rollar/gazabkor.png',      desc: 'G\'azab bilan to\'lgan — o\'lgan kechasi barcha belgilarni buzadi.', meta: 'O\'lim effekti · olis ta\'sir' },
+    { name: 'Gipnotizyor',  type: 'dark', img: 'rollar/gipnotizyor.png',   desc: 'Bitta kishini gipnozga soladi — uning harakati boshqariladi.', meta: 'Aql nazorati · 1 kecha' },
+    { name: 'Jin',          type: 'dark', img: 'rollar/jin.png',           desc: 'Ko\'rinmas kuch — tunda hech kim uni bloklayolmaydi.', meta: 'Ghost mode · izlab bo\'lmaydi' },
+    { name: 'Daydi',        type: 'dark', img: 'rollar/daydi.png',         desc: 'Shahar bo\'ylab sanqiydi — tasodifiy o\'yinchilarni bloklaydi.', meta: 'Tasodifiy bloklash · har kecha' },
   ];
 
   const VISIBLE_INIT = 18;
@@ -288,10 +285,16 @@
     if (!rolesGrid) return;
     const filtered = currentFilter === 'all' ? ROLES : ROLES.filter(r => r.type === currentFilter);
     const toShow = showAll ? filtered : filtered.slice(0, VISIBLE_INIT);
-    rolesGrid.innerHTML = toShow.map((r, i) => `
+    rolesGrid.innerHTML = toShow.map((r) => `
       <div class="em-role-card" data-type="${r.type}" data-idx="${ROLES.indexOf(r)}"
            tabindex="0" role="button" aria-label="${r.name}">
-        <div class="em-role-icon">${r.icon}</div>
+        <div class="em-role-img-wrap">
+          ${r.img
+            ? `<img src="${r.img}" alt="${r.name}" class="em-role-img" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+               <div class="em-role-icon-fb" style="display:none">${r.icon || '🎭'}</div>`
+            : `<div class="em-role-icon">${r.icon || '🎭'}</div>`
+          }
+        </div>
         <div class="em-role-name">${r.name}</div>
         <div class="em-role-type">${typeLabel(r.type)}</div>
       </div>
@@ -344,10 +347,26 @@
     if (!r || !modal) return;
     if (modalTag)  { modalTag.textContent = typeLabel(r.type); modalTag.style.background = typeColors[r.type] + '22'; modalTag.style.color = typeColors[r.type]; modalTag.style.borderColor = typeColors[r.type] + '55'; }
     if (modalName) modalName.textContent = r.name;
-    if (modalPh)   modalPh.textContent = r.icon;
     if (modalDesc) modalDesc.textContent = r.desc;
     if (modalMeta) modalMeta.textContent = r.meta;
-    if (modalMedia) modalMedia.style.background = typeColors[r.type] + '15';
+    if (modalMedia) {
+      modalMedia.style.background = typeColors[r.type] + '15';
+      // Rasm yoki emoji ko'rsatish
+      const existingImg = modalMedia.querySelector('.em-role-modal-img-real');
+      if (existingImg) existingImg.remove();
+      if (r.img) {
+        const imgEl = document.createElement('img');
+        imgEl.src = r.img;
+        imgEl.alt = r.name;
+        imgEl.className = 'em-role-modal-img-real';
+        imgEl.onerror = function() { this.style.display='none'; if(modalPh) modalPh.style.display='flex'; };
+        imgEl.onload  = function() { if(modalPh) modalPh.style.display='none'; };
+        modalMedia.insertBefore(imgEl, modalMedia.firstChild);
+        if(modalPh) modalPh.style.display='none';
+      } else {
+        if(modalPh) { modalPh.textContent = r.icon || '🎭'; modalPh.style.display='flex'; }
+      }
+    }
     modal.hidden = false;
     modal.removeAttribute('aria-hidden');
     document.body.style.overflow = 'hidden';
