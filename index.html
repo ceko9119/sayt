@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- config.js dan olinadi -->
+  <title>EMPIRE MAFIA — Telegram Mafia O'yini</title>
+  <meta name="description"
+    content="EMPIRE MAFIA — O'zbekistondagi eng yaxshi Telegram Mafia boti: 33 noyob rol, VIP obuna, klan urushi, imperiya iqtisodiyoti. Guruhda o'ynang!">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="EMPIRE MAFIA, Telegram Mafia, mafia bot, o'yin bot, O'zbekiston">
+  <meta name="theme-color" content="#050508">
+  <meta name="author" content="EMPIRE MAFIA">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EMPIRE MAFIA — Telegram Mafia O'yini">
+  <meta property="og:description"
+    content="33 noyob rol, VIP obuna, klan urushi va imperiya iqtisodiyoti — barchasi bitta botda.">
+  <meta property="og:image" content="/static/empire.png">
+  <meta property="og:url" content="https://empire.uz">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EMPIRE MAFIA — Telegram Mafia O'yini">
+  <meta name="twitter:description" content="33 noyob rol, VIP obuna, klan urushi — barchasi bitta botda.">
+  <meta name="twitter:image" content="/static/empire.png">
+  <!-- Structured Data (Google uchun) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "EMPIRE MAFIA",
+    "url": "https://empire.uz",
+    "description": "O'zbekistondagi Telegram Mafia boti: 33 noyob rol, VIP obuna, klan urushi.",
+    "inLanguage": "uz"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Konfiguratsiya (config.js) — birinchi yuklanadi -->
+  <script src="config.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="em-body">
+
+  <!-- Noise overlay -->
+  <div class="em-noise" aria-hidden="true"></div>
+
+  <!-- Particle canvas -->
+  <canvas class="em-particles" id="emParticles" aria-hidden="true"></canvas>
+
+  <!-- Ambient glows -->
+  <div class="em-glow em-glow-a" id="glowA" aria-hidden="true"></div>
+  <div class="em-glow em-glow-b" id="glowB" aria-hidden="true"></div>
+  <div class="em-glow em-glow-c" id="glowC" aria-hidden="true"></div>
+
+  <!-- Splash screen -->
+  <div class="em-splash" id="empSplash">
+    <div class="em-splash-inner">
+      <div class="em-splash-crown">👑</div>
+      <div class="em-splash-title">EMPIRE MAFIA</div>
+      <div class="em-splash-bar"><span id="splashBarFill"></span></div>
+      <div class="em-splash-text">yuklanmoqda…</div>
+    </div>
+  </div>
+
+  <!-- Audio button -->
+  <button type="button" class="em-audio-btn" id="audioBtn" title="Fon musiqasi" aria-label="Fon musiqasi">🔇</button>
+
+  <div class="em-app" id="emApp">
+    <!-- Overlay for drawer -->
+    <div class="em-overlay" id="overlay"></div>
+
+    <!-- Side Drawer -->
+    <aside class="em-drawer" id="sideDrawer">
+      <div class="em-drawer-head">
+        <span class="em-crown-logo">👑</span>
+        <div>
+          <strong>EMPIRE MAFIA</strong>
+          <small>Telegram Mafia</small>
+        </div>
+        <button type="button" class="em-icon-btn" id="drawerClose">✕</button>
+      </div>
+      <nav class="em-drawer-nav">
+        <a class="em-drawer-link hot" id="drawerBotLink" href="https://t.me/TuronMafia_bot" target="_blank">🤖 Botni
+          ochish</a>
+        <a class="em-drawer-link" href="#tariffs">⭐ VIP tarifi</a>
+        <a class="em-drawer-link" href="#gems">💎 Olmos do'koni</a>
+        <a class="em-drawer-link" href="#clan">⚔️ Klan tizimi</a>
+        <a class="em-drawer-link" href="#features">✨ Imkoniyatlar</a>
+        <a class="em-drawer-link" href="#rating">🏆 Reyting</a>
+        <a class="em-drawer-link" href="#roles">🎭 Rollar</a>
+        <div class="em-drawer-section-title">Hujjatlar</div>
+        <a class="em-drawer-link" href="/terms">Shartlar</a>
+        <a class="em-drawer-link" href="/privacy">Maxfiylik</a>
+        <div class="em-drawer-stats">
+          <div><span>O'yinlar</span><b id="drawerGames">—</b></div>
+          <div><span>O'yinchilar</span><b id="drawerUsers">—</b></div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Header -->
+    <header class="em-header" id="emHeader">
+      <div class="em-header-inner">
+        <button type="button" class="em-icon-btn" id="navHam" aria-label="Menu">☰</button>
+        <a href="/" class="em-brand">
+          <span class="em-crown-sm">👑</span>
+          EMPIRE MAFIA
+        </a>
+        <nav class="em-header-links">
+          <a href="#features">Imkoniyatlar</a>
+          <a href="#tariffs">VIP</a>
+          <a href="#clan">Klan</a>
+          <a href="#rating">Reyting</a>
+          <a href="#roles">Rollar</a>
+        </nav>
+        <a class="em-btn em-btn-gold" id="navBotLink" href="https://t.me/EmpireMafiaBot" target="_blank">Botga
+          kirish</a>
+      </div>
+    </header>
+
+    <!-- Ticker -->
+    <div class="em-ticker" aria-hidden="true">
+      <div class="em-ticker-track" id="tickerTrack">
+        <span>👑 Imperiya shahri — ovoz ber</span>
+        <span>⭐ VIP — olmos chegirmasi va premium imkoniyatlar</span>
+        <span>🎭 33 rol — har o'yin yangi sir</span>
+        <span>⚔️ Klan urushi — haftalik jang</span>
+        <span>💎 Olmos do'koni — Stars, Click, Payme</span>
+        <span>🔴🔵 Jamoa rejimi — mafiya vs tinch fuqaro</span>
+        <span>🌙 Tun keldi — o'yinchilar ovoz bermoqda</span>
+        <span>🏆 Haftalik reyting — eng kuchli imperlar</span>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="em-hero" id="hero">
+      <div class="em-hero-scan" aria-hidden="true"></div>
+      <div class="em-wrap em-hero-grid">
+        <div class="em-hero-copy">
+          <div class="em-badge"><span class="em-pulse"></span> LIVE · Telegram Mafia</div>
+          <h1 class="em-hero-title">EMPIRE<br><em>MAFIA</em></h1>
+          <p class="em-hero-lead">
+            <b>IMPERIYA</b> shahri, <span id="heroRoleCount">33</span> noyob rol, klan urushi,
+            VIP obuna va haftalik missiyalar — barchasi bitta botda.
+            <em>Tun. Ovoz. G'alaba.</em>
+          </p>
+          <div class="em-hero-cta">
+            <a class="em-btn em-btn-red em-btn-lg em-hero-main-cta" id="heroBotLink" href="https://t.me/EmpireMafiaBot"
+              target="_blank">▶ O'ynashni boshlash</a>
+            <a class="em-btn em-btn-ghost em-btn-lg" href="#tariffs">⭐ VIP tarifi</a>
+            <a class="em-btn em-btn-ghost em-btn-lg" href="#gems">💎 Olmos sotib olish</a>
+          </div>
+        </div>
+        <div class="em-hero-panel">
+          <div class="em-stat-card">
+            <div class="em-stat-item">
+              <span>Faol o'yin</span>
+              <strong id="statGames">247</strong>
+            </div>
+            <div class="em-stat-item">
+              <span>O'yinchilar</span>
+              <strong id="statUsers">14,832</strong>
+            </div>
+            <div class="em-stat-item">
+              <span>Rollar</span>
+              <strong id="statRoles">33</strong>
+            </div>
+          </div>
+          <div class="em-hero-tags">
+            <span>👑 Imperiya</span>
+            <span>⭐ VIP</span>
+            <span>⚔️ Klan</span>
+            <span>💎 Olmos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="em-main">
+
+      <!-- VIP TARIFFS -->
+      <section class="em-section em-tariff-sec" id="tariffs">
+        <div class="em-wrap">
+          <header class="em-sec-head center">
+            <span class="em-eyebrow">Obuna</span>
+            <h2>VIP tarifi</h2>
+            <p>Bot obunasi — premium imkoniyatlar, kosmetika va chegirmalar. Imperiya o'yinchilariga maxsus!</p>
+          </header>
+          <div class="em-vip-showcase">
+            <article class="em-vip-card">
+              <div class="em-vip-crown">👑</div>
+              <div class="em-vip-head">
+                <h3>VIP</h3>
+                <small>Premium obuna</small>
+              </div>
+              <ul class="em-vip-features">
+                <li>💎 Olmos do'konida <b>15%</b> chegirma</li>
+                <li>🖼 VIP kosmetika (avatar, fon, nishon)</li>
+                <li>👑 VIP nishon va profil bezaklari</li>
+                <li>✨ Maxsus emoji va effektlar</li>
+                <li>🎯 Missiyalarda bonus mukofot</li>
+                <li>📊 Kengaytirilgan statistika</li>
+              </ul>
+              <div class="em-vip-plans">
+                <div class="em-vip-plan">
+                  <span class="em-plan-dur">7 kun</span>
+                  <span class="em-plan-price">99 ⭐</span>
+                </div>
+                <div class="em-vip-plan featured">
+                  <div class="em-plan-popular">Mashhur</div>
+                  <span class="em-plan-dur">15 kun</span>
+                  <span class="em-plan-price">179 ⭐</span>
+                </div>
+                <div class="em-vip-plan">
+                  <span class="em-plan-dur">30 kun</span>
+                  <span class="em-plan-price">329 ⭐</span>
+                </div>
+              </div>
+              <a class="em-btn em-btn-gold em-btn-lg" id="vipBotLink" href="https://t.me/EmpireMafiaBot"
+                target="_blank">👑 VIP olish</a>
+              <p class="em-vip-note">Tariflarni Stars orqali bot profilida sotib olish mumkin.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- GEMS SHOP -->
+      <section class="em-section em-gems-sec" id="gems">
+        <div class="em-wrap">
+          <header class="em-sec-head center">
+            <span class="em-eyebrow">Premium valyuta</span>
+            <h2>Olmos do'koni</h2>
+            <p>3 qadam: ID kiriting → foydalanuvchini tasdiqlang → paket tanlang</p>
+          </header>
+
+          <div class="em-steps-row">
+            <div class="em-step active" data-step="1"><b>1</b><span>ID</span></div>
+            <div class="em-step-line"></div>
+            <div class="em-step" data-step="2"><b>2</b><span>Tasdiq</span></div>
+            <div class="em-step-line"></div>
+            <div class="em-step" data-step="3"><b>3</b><span>To'lov</span></div>
+          </div>
+
+          <div class="em-shop-card">
+            <div class="em-shop-left">
+              <label class="em-label">Hisob raqami</label>
+              <div class="em-input-row">
+                <input class="em-input" id="shopInput" inputmode="numeric" placeholder="Botdan olingan raqam"
+                  autocomplete="off">
+                <button type="button" class="em-btn em-btn-gold" id="shopSearch">Qidirish</button>
+              </div>
+              <p class="em-hint">Botda «Olmos» bo'limidan olingan raqamni kiriting. Username ishlamaydi.</p>
+              <p class="em-err" id="shopErr"></p>
+              <div class="em-user-card" id="shopUserCard">
+                <div class="em-user-av" id="shopAv">?</div>
+                <div class="em-user-info">
+                  <strong id="shopName">—</strong>
+                  <span class="em-muted" id="shopId"></span>
+                </div>
+                <div class="em-user-bal">
+                  <small>Balans</small>
+                  <b id="shopDia">0</b> 💎
+                </div>
+              </div>
+            </div>
+            <div class="em-shop-right">
+              <div class="em-pkgs-head">
+                <span class="em-label">Paketlar</span>
+                <span class="em-muted" id="pkgsHint">Avval foydalanuvchini qidiring</span>
+              </div>
+              <div class="em-pkgs-grid" id="pkgsGrid">
+                <div class="em-pkg-card locked">
+                  <div class="em-pkg-icon">💎</div>
+                  <div class="em-pkg-amount">50</div>
+                  <div class="em-pkg-price">5,000 so'm</div>
+                </div>
+                <div class="em-pkg-card locked">
+                  <div class="em-pkg-icon">💎</div>
+                  <div class="em-pkg-amount">120</div>
+                  <div class="em-pkg-price">11,000 so'm</div>
+                </div>
+                <div class="em-pkg-card locked featured">
+                  <div class="em-pkg-badge">Eng mashhur</div>
+                  <div class="em-pkg-icon">💎</div>
+                  <div class="em-pkg-amount">300</div>
+                  <div class="em-pkg-price">25,000 so'm</div>
+                </div>
+                <div class="em-pkg-card locked">
+                  <div class="em-pkg-icon">💎</div>
+                  <div class="em-pkg-amount">650</div>
+                  <div class="em-pkg-price">50,000 so'm</div>
+                </div>
+                <div class="em-pkg-card locked">
+                  <div class="em-pkg-icon">💎</div>
+                  <div class="em-pkg-amount">1500</div>
+                  <div class="em-pkg-price">110,000 so'm</div>
+                </div>
+                <div class="em-pkg-card locked">
+                  <div class="em-pkg-icon">👑</div>
+                  <div class="em-pkg-amount">3500</div>
+                  <div class="em-pkg-price">250,000 so'm</div>
+                </div>
+              </div>
+              <div class="em-pay-methods">
+                <span class="em-pay-tag stars">⭐ Stars</span>
+                <span class="em-pay-tag click">Click</span>
+                <span class="em-pay-tag payme">Payme</span>
+                <span class="em-pay-tag paynet">Paynet</span>
+              </div>
+              <p class="em-pay-note">Paket tanlang — to'lov oynasida Stars, Click, Payme yoki Paynet</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section class="em-section em-features-sec" id="features">
+        <div class="em-wrap">
+          <header class="em-sec-head">
+            <span class="em-eyebrow">Nima uchun EMPIRE?</span>
+            <h2>Imkoniyatlar</h2>
+          </header>
+          <div class="em-bento">
+            <article class="em-bento-item wide gold">
+              <span class="em-bento-icon">🎭</span>
+              <h3><span id="featRoleCount">33</span> noyob rol</h3>
+              <p>Mafiya, tinch fuqaro va neytral — har bir o'yin yangi sir va yangi strategiya.</p>
+            </article>
+            <article class="em-bento-item violet">
+              <span class="em-bento-icon">🖤</span>
+              <h3>Dark Triad · 5</h3>
+              <p>Maxfiy rollar — faqat maxsus o'yinlarda. Eng xavfli va eng kuchli!</p>
+            </article>
+            <article class="em-bento-item">
+              <span class="em-bento-icon">⚔️</span>
+              <h3>Klan tizimi</h3>
+              <p>Klan yarating, a'zolar yig'ing, haftalik urushda g'alaba qozing.</p>
+            </article>
+            <article class="em-bento-item">
+              <span class="em-bento-icon">👑</span>
+              <h3>Imperiya shahar</h3>
+              <p>Shahar iqtisodiyoti — kon, bozor, kazino va imperiya hazinasi.</p>
+            </article>
+            <article class="em-bento-item">
+              <span class="em-bento-icon">⭐</span>
+              <h3>VIP obuna</h3>
+              <p>Premium panel, kosmetika va chegirmalar — imperatorlarga mos!</p>
+            </article>
+            <article class="em-bento-item wide red">
+              <span class="em-bento-icon">🎯</span>
+              <h3>Haftalik missiyalar</h3>
+              <p>Imperiya mukofotlari, reyting jadvali va maxsus voqealar.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLAN SYSTEM -->
+      <section class="em-section em-clan-sec" id="clan">
+        <div class="em-wrap">
+          <header class="em-sec-head center">
+            <span class="em-eyebrow">Jamoa siyosati</span>
+            <h2>Klan tizimi</h2>
+            <p>100 💎 bilan klan yarating · LVL oshganda bonuslar ochiladi · haftalik urush</p>
+          </header>
+          <div class="em-clan-grid">
+            <div class="em-clan-roles-grid">
+              <div class="em-clan-role">
+                <span>👑</span>
+                <div>
+                  <strong>Imperator</strong>
+                  <small>Klan boshlig'i</small>
+                </div>
+              </div>
+              <div class="em-clan-role">
+                <span>⚔️</span>
+                <div>
+                  <strong>General</strong>
+                  <small>O'rinbosar, urush boshqaruvchi</small>
+                </div>
+              </div>
+              <div class="em-clan-role">
+                <span>🛡</span>
+                <div>
+                  <strong>Senator</strong>
+                  <small>A'zo qabul qilish huquqi</small>
+                </div>
+              </div>
+              <div class="em-clan-role">
+                <span>💼</span>
+                <div>
+                  <strong>Kapitan</strong>
+                  <small>Missiya boshqaruvchi</small>
+                </div>
+              </div>
+              <div class="em-clan-role">
+                <span>🗡</span>
+                <div>
+                  <strong>Jangchi</strong>
+                  <small>Asosiy klan a'zosi</small>
+                </div>
+              </div>
+              <div class="em-clan-role">
+                <span>🌱</span>
+                <div>
+                  <strong>Novchik</strong>
+                  <small>Yangi a'zo</small>
+                </div>
+              </div>
+            </div>
+            <div class="em-clan-side">
+              <div class="em-clan-perks">
+                <h3>Klan bonuslari (LVL)</h3>
+                <div class="em-perk-item"><span>LVL 1</span>
+                  <p>Klan chat ochiladi</p>
+                </div>
+                <div class="em-perk-item"><span>LVL 3</span>
+                  <p>Missiya sistemi +50% reward</p>
+                </div>
+                <div class="em-perk-item"><span>LVL 5</span>
+                  <p>Klan bank — a'zolarga kredit</p>
+                </div>
+                <div class="em-perk-item"><span>LVL 8</span>
+                  <p>Maxsus klan logotipi va rang</p>
+                </div>
+                <div class="em-perk-item"><span>LVL 10</span>
+                  <p>Imperiya Klan nishoni 👑</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="em-clan-lb">
+            <h3>🏆 Eng kuchli klanlar</h3>
+            <table class="em-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Klan</th>
+                  <th>LVL</th>
+                  <th>A'zolar</th>
+                  <th>XP</th>
+                </tr>
+              </thead>
+              <tbody id="clanLbBody">
+                <tr>
+                  <td>1</td>
+                  <td>👑 Qora Imperium</td>
+                  <td>10</td>
+                  <td>48</td>
+                  <td>128,400</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>🗡 Temir Qal'a</td>
+                  <td>9</td>
+                  <td>42</td>
+                  <td>98,750</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>🔥 Oltin Taxt</td>
+                  <td>8</td>
+                  <td>39</td>
+                  <td>87,200</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>⚔️ So'nggi Jangchi</td>
+                  <td>7</td>
+                  <td>35</td>
+                  <td>72,100</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>🌙 Tun Arslon</td>
+                  <td>7</td>
+                  <td>31</td>
+                  <td>65,800</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="em-clan-note">Klan boshqaruvi — botda <b>/clan</b> buyrug'i orqali.</p>
+        </div>
+      </section>
+
+      <!-- RATING -->
+      <section class="em-section em-rating-sec" id="rating">
+        <div class="em-wrap">
+          <header class="em-sec-head center">
+            <span class="em-eyebrow">Reyting</span>
+            <h2>Eng yaxshi o'yinchilar</h2>
+            <p>Ism va tier — ID ko'rsatilmaydi</p>
+          </header>
+          <div class="em-rating-tabs">
+            <button class="em-rtab active" data-sort="score">⭐ Ball</button>
+            <button class="em-rtab" data-sort="games">🎮 O'yin</button>
+            <button class="em-rtab" data-sort="streak">🔥 Seriya</button>
+          </div>
+          <div class="em-rating-wrap">
+            <table class="em-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>O'yinchi</th>
+                  <th>⭐ Ball</th>
+                  <th>🎮 O'yin</th>
+                  <th>🔥 Seriya</th>
+                </tr>
+              </thead>
+              <tbody id="ratingBody">
+                <tr class="top1">
+                  <td>🥇</td>
+                  <td>👑 Alisher_Empire</td>
+                  <td>18,420</td>
+                  <td>342</td>
+                  <td>24</td>
+                </tr>
+                <tr class="top2">
+                  <td>🥈</td>
+                  <td>⭐ Sardor_Khan</td>
+                  <td>16,890</td>
+                  <td>298</td>
+                  <td>18</td>
+                </tr>
+                <tr class="top3">
+                  <td>🥉</td>
+                  <td>💎 Zafar_Mafia</td>
+                  <td>15,340</td>
+                  <td>276</td>
+                  <td>15</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>🎭 Jasur_Night</td>
+                  <td>14,200</td>
+                  <td>251</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>🗡 Otabek_Dark</td>
+                  <td>13,750</td>
+                  <td>238</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>🌙 Nodir_Shadow</td>
+                  <td>12,900</td>
+                  <td>221</td>
+                  <td>9</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>⚔️ Sherzod_War</td>
+                  <td>11,800</td>
+                  <td>209</td>
+                  <td>8</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>🔥 Kamol_Fire</td>
+                  <td>10,950</td>
+                  <td>195</td>
+                  <td>7</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>💫 Ulugbek_Star</td>
+                  <td>10,100</td>
+                  <td>182</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>🏆 Bobur_Ace</td>
+                  <td>9,600</td>
+                  <td>174</td>
+                  <td>5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROLES -->
+      <section class="em-section em-roles-sec" id="roles">
+        <div class="em-wrap">
+          <header class="em-sec-head">
+            <span class="em-eyebrow">Katalog</span>
+            <h2>Rollar</h2>
+          </header>
+          <div class="em-tabs" role="tablist">
+            <button type="button" class="em-tab active" data-filter="all">Hammasi <i id="countAll">33</i></button>
+            <button type="button" class="em-tab" data-filter="civ">Tinch <i id="countCiv">14</i></button>
+            <button type="button" class="em-tab" data-filter="maf">Mafiya <i id="countMaf">9</i></button>
+            <button type="button" class="em-tab" data-filter="solo">Neytral <i id="countSolo">5</i></button>
+            <button type="button" class="em-tab" data-filter="dark">Dark Triad <i id="countDark">5</i></button>
+          </div>
+          <div class="em-roles-grid" id="rolesGrid"></div>
+          <button type="button" class="em-btn em-btn-ghost em-roles-more" id="rolesMoreBtn" hidden>Yana
+            ko'rsatish</button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Role Modal -->
+    <div id="roleModal" class="em-role-modal-backdrop" hidden aria-hidden="true">
+      <div class="em-role-modal" role="dialog" aria-modal="true" aria-labelledby="roleModalName">
+        <button type="button" class="em-role-modal-close" id="roleModalClose" aria-label="Yopish">×</button>
+        <div class="em-role-modal-media" id="roleModalMedia">
+          <div class="em-role-modal-ph" id="roleModalPh">🎭</div>
+        </div>
+        <div class="em-role-modal-body">
+          <span class="em-role-modal-tag" id="roleModalTag">TINCH</span>
+          <h3 class="em-role-modal-name" id="roleModalName">Rol</h3>
+          <p class="em-role-modal-desc" id="roleModalDesc"></p>
+          <p class="em-role-modal-meta em-muted" id="roleModalMeta"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="em-footer">
+      <div class="em-wrap em-footer-grid">
+        <div class="em-footer-brand">
+          <span class="em-footer-logo">👑 EMPIRE MAFIA</span>
+          <span class="em-footer-copy">© 2026 EMPIRE MAFIA. Barcha huquqlar himoyalangan.</span>
+          <p class="em-footer-tag">Telegram Mafia · 18+ · Saytga kirish — <a href="/terms">foydalanish shartlari</a>ga
+            rozilik</p>
+        </div>
+        <nav class="em-footer-links" aria-label="Huquqiy hujjatlar">
+          <a href="/privacy">Maxfiylik siyosati</a>
+          <a href="/terms">Foydalanish shartlari</a>
+          <a href="/cookies">Cookie</a>
+          <a href="/payment-policy">To'lov qoidalari</a>
+        </nav>
+        <div class="em-footer-social">
+          <a id="footBotLink" href="https://t.me/EmpireMafiaBot" target="_blank" rel="noopener">Telegram Bot</a>
+        </div>
+      </div>
+    </footer>
+
+    <button type="button" class="em-scroll-top" id="scrollTopBtn" hidden aria-label="Yuqoriga">↑</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // config.js dan bot linklar va SEO ni qo'llash
+    (function() {
+      var cfg = window.EMPIRE_CONFIG;
+      if (!cfg) return;
+
+      // Title va meta description yangilash
+      if (cfg.SEO && cfg.SEO.TITLE) document.title = cfg.SEO.TITLE;
+      var descMeta = document.querySelector('meta[name="description"]');
+      if (descMeta && cfg.SEO && cfg.SEO.DESCRIPTION) descMeta.setAttribute('content', cfg.SEO.DESCRIPTION);
+
+      // Barcha bot linklarni yangilash
+      var botLinks = ['navBotLink','heroBotLink','vipBotLink','drawerBotLink','footBotLink'];
+      botLinks.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && cfg.BOT_URL) el.href = cfg.BOT_URL;
+      });
+    })();
+  </script>
+</body>
+
+</html>
