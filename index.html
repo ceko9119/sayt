@@ -105,6 +105,7 @@
           ochish</a>
         <a class="em-drawer-link" href="#tariffs">⭐ VIP tarifi</a>
         <a class="em-drawer-link" href="#gems">💎 Olmos do'koni</a>
+        <a class="em-drawer-link" href="#nft">🖼 NFT Market</a>
         <a class="em-drawer-link" href="#clan">⚔️ Klan tizimi</a>
         <a class="em-drawer-link" href="#features">✨ Imkoniyatlar</a>
         <a class="em-drawer-link" href="#rating">🏆 Reyting</a>
@@ -130,6 +131,7 @@
         <nav class="em-header-links">
           <a href="#features">Imkoniyatlar</a>
           <a href="#tariffs">VIP</a>
+          <a href="#nft">NFT</a>
           <a href="#clan">Klan</a>
           <a href="#rating">Reyting</a>
           <a href="#roles">Rollar</a>
@@ -225,16 +227,20 @@
               <div class="em-vip-plans">
                 <div class="em-vip-plan">
                   <span class="em-plan-dur">7 kun</span>
-                  <span class="em-plan-price">99 ⭐</span>
+                  <span class="em-plan-price">12 💎</span>
+                  <span class="em-plan-alt">89 ⭐ Stars</span>
                 </div>
                 <div class="em-vip-plan featured">
                   <div class="em-plan-popular">Mashhur</div>
                   <span class="em-plan-dur">15 kun</span>
-                  <span class="em-plan-price">179 ⭐</span>
+                  <span class="em-plan-price">25 💎</span>
+                  <span class="em-plan-alt">170 ⭐ Stars</span>
                 </div>
                 <div class="em-vip-plan">
+                  <div class="em-plan-popular" style="background:linear-gradient(135deg,#c9a227,#e8c44a);color:#000">Tejamkor</div>
                   <span class="em-plan-dur">30 kun</span>
-                  <span class="em-plan-price">329 ⭐</span>
+                  <span class="em-plan-price">45 💎</span>
+                  <span class="em-plan-alt">300 ⭐ Stars</span>
                 </div>
               </div>
               <a class="em-btn em-btn-gold em-btn-lg" id="vipBotLink" href="https://t.me/EmpireMafiaBot"
@@ -329,6 +335,48 @@
                 <span class="em-pay-tag paynet">Paynet</span>
               </div>
               <p class="em-pay-note">Paket tanlang — to'lov oynasida Stars, Click, Payme yoki Paynet</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NFT MARKET -->
+      <section class="em-section em-nft-sec" id="nft">
+        <div class="em-wrap">
+          <header class="em-sec-head center">
+            <span class="em-eyebrow">Imperiya bozori</span>
+            <h2>NFT Market</h2>
+            <p>Empire Mafia maxsus <b>Telegram Gift NFT</b> kolleksiyasi — Telegram profil'ingizni bezang, sotib oling va soting. <b>Fragment.com</b> da savdo qiling.</p>
+          </header>
+
+          <!-- Filter tabs -->
+          <div class="em-nft-filters" role="tablist">
+            <button class="em-nft-tab active" data-nft-filter="all">🗄 Hammasi</button>
+            <button class="em-nft-tab" data-nft-filter="character">🧑 Personaj</button>
+            <button class="em-nft-tab" data-nft-filter="weapon">⚔️ Qurol</button>
+            <button class="em-nft-tab" data-nft-filter="crown">👑 Toj</button>
+            <button class="em-nft-tab" data-nft-filter="special">✨ Maxsus</button>
+          </div>
+
+          <!-- NFT Grid -->
+          <div class="em-nft-grid" id="nftGrid"></div>
+
+          <!-- NFT Buy Modal -->
+          <div class="em-nft-modal-backdrop" id="nftModal" hidden aria-hidden="true">
+            <div class="em-nft-modal" role="dialog" aria-modal="true">
+              <button type="button" class="em-nft-modal-close" id="nftModalClose" aria-label="Yopish">×</button>
+              <div class="em-nft-modal-preview" id="nftModalPreview"></div>
+              <div class="em-nft-modal-body">
+                <span class="em-nft-modal-rarity" id="nftModalRarity">LEGENDARY</span>
+                <h3 class="em-nft-modal-name" id="nftModalName">NFT nomi</h3>
+                <p class="em-nft-modal-desc" id="nftModalDesc"></p>
+                <div class="em-nft-modal-supply" id="nftModalSupply">Chiqarilgan: —</div>
+                <div class="em-nft-modal-price">
+                  <span id="nftModalPrice">—</span>
+                </div>
+                <a class="em-btn em-btn-gold em-btn-lg" id="nftBuyBtn" href="https://fragment.com" target="_blank">💸 Fragment.com da sotib olish</a>
+                <p class="em-nft-modal-note">Telegram Stars yoki TON bilan to’lov · Fragment.com rasmiy bozori</p>
+              </div>
             </div>
           </div>
         </div>
