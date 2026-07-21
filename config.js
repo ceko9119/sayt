@@ -48,12 +48,13 @@ const EMPIRE_CONFIG = {
    },
 
    /* ----------------------------------------------------------
-      VIP NARXLARI (Stars)
+      VIP NARXLARI
+      STARS = Telegram Stars | DIAMOND = Olmos
    ---------------------------------------------------------- */
    VIP_PRICES: {
-      DAYS_7: 99,
-      DAYS_15: 179,
-      DAYS_30: 329,
+      DAYS_7:  { stars: 89,  diamond: 12  },
+      DAYS_15: { stars: 170, diamond: 25  },
+      DAYS_30: { stars: 300, diamond: 45  },
    },
 
    /* ----------------------------------------------------------
