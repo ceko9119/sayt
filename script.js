@@ -261,7 +261,7 @@
 
     // NEYTRAL
     { name: 'Joker',        type: 'solo', img: 'rollar/joker.png',         desc: 'Chiqarilsangiz g\'alaba. Ovozga tushiring!', meta: 'Aktyorlik va aldash zarur · yolg\'iz g\'alaba' },
-    { name: 'Bo\'ri',        type: 'solo', img: "rollar/bo'ri.png",         desc: 'Har kechasi bitta o\'yinchini o\'ldiradi. Maqsad — yolg\'iz g\'alaba.', meta: 'Mafiya ham, tinch ham dushman' },
+    { name: 'Bo\'ri',        type: 'solo', img: 'rollar/bori.png',          desc: 'Har kechasi bitta o\'yinchini o\'ldiradi. Maqsad — yolg\'iz g\'alaba.', meta: 'Mafiya ham, tinch ham dushman' },
     { name: 'Tulki',        type: 'solo', img: 'rollar/tulki.png',         desc: 'Aldaydi, yashirinadi, omboridan foydalanadi. Eng hiylagar neytral.', meta: 'Hech kimga ishonmaydi · o\'z yo\'li bilan g\'alaba' },
     { name: 'Qasoskor',     type: 'solo', img: 'rollar/qasoskor.png',      desc: 'Bitta dushmani bor — uni yo\'q qilsa g\'alaba.', meta: 'Maqsadli qasoskor · bir nishon' },
     { name: 'Suidsid',      type: 'solo', img: 'rollar/suidsid.png',       desc: 'O\'zini o\'zi portlatish orqali dushmanni yo\'q qiladi.', meta: 'Oxirgi chora · birgalikda o\'lim' },
@@ -290,9 +290,9 @@
            tabindex="0" role="button" aria-label="${r.name}">
         <div class="em-role-img-wrap">
           ${r.img
-            ? `<img src="${r.img}" alt="${r.name}" class="em-role-img" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-               <div class="em-role-icon-fb" style="display:none">${r.icon || '🎭'}</div>`
-            : `<div class="em-role-icon">${r.icon || '🎭'}</div>`
+            ? `<img src="./${r.img}" alt="${r.name}" class="em-role-img" loading="eager" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+               <div class="em-role-icon-fb" style="display:none">🎭</div>`
+            : `<div class="em-role-icon">🎭</div>`
           }
         </div>
         <div class="em-role-name">${r.name}</div>
@@ -471,7 +471,231 @@
   if (heroSection) observer.observe(heroSection);
 
   /* ============================================================
-     SMOOTH ACTIVE NAV LINKS
+     TELEGRAM NFT GIFTS MARKET
+     ============================================================ */
+  const NFT_ITEMS = [
+    // EMPIRE MAFIA MAXSUS GIFLAR
+    { id: 'nft01', cat: 'character', rarity: 'legendary', name: 'Empire Don',        bg: 'linear-gradient(135deg,#1a0a00,#3d1a00)', emoji: '🤵', supply: '100 ta',   price: '500 ⭐',  floor: '0.5 TON', desc: 'Empire Mafiyasining Don si. Faqat 100 ta chiqarilgan maxsus Telegram Gift.' },
+    { id: 'nft02', cat: 'character', rarity: 'epic',      name: 'Shadow Komissar',   bg: 'linear-gradient(135deg,#000d1a,#001a33)', emoji: '🕵️', supply: '500 ta',  price: '200 ⭐',  floor: '0.18 TON', desc: 'Maxfiy komissar. Profilda ko\'rinadigan premium Telegram Gift NFT.' },
+    { id: 'nft03', cat: 'character', rarity: 'epic',      name: 'Dark Joker',        bg: 'linear-gradient(135deg,#0d001a,#1a003d)', emoji: '🃏', supply: '500 ta',  price: '150 ⭐',  floor: '0.12 TON', desc: 'Joker belgisi bilan maxsus chiqarilgan Telegram NFT Gift.' },
+    { id: 'nft04', cat: 'character', rarity: 'rare',      name: 'Golden Sniper',     bg: 'linear-gradient(135deg,#1a1200,#3d2d00)', emoji: '🎯', supply: '1000 ta', price: '99 ⭐',   floor: '0.07 TON', desc: 'Oltin nishonchi — rare darajali Empire Mafia Telegram Gift.' },
+    { id: 'nft05', cat: 'weapon',    rarity: 'legendary', name: 'Imperator Sword',   bg: 'linear-gradient(135deg,#1a0000,#3d0000)', emoji: '⚔️', supply: '50 ta',   price: '800 ⭐',  floor: '1.2 TON',  desc: 'Imperator qilichi. Eng noyob qurol Gift. Faqat 50 ta mavjud.' },
+    { id: 'nft06', cat: 'weapon',    rarity: 'epic',      name: 'Dark Dagger',       bg: 'linear-gradient(135deg,#1a001a,#2d002d)', emoji: '🗡', supply: '300 ta',  price: '250 ⭐',  floor: '0.22 TON', desc: 'Zulmat xanjari. Epic darajali qurol Telegram NFT.' },
+    { id: 'nft07', cat: 'weapon',    rarity: 'rare',      name: 'Silver Pistol',     bg: 'linear-gradient(135deg,#0a0a0a,#1a1a1a)', emoji: '🔫', supply: '800 ta',  price: '120 ⭐',  floor: '0.09 TON', desc: 'Kumush to\'pponcha. Rare qurol Gift NFT.' },
+    { id: 'nft08', cat: 'crown',     rarity: 'legendary', name: 'Empire Crown',      bg: 'linear-gradient(135deg,#1a1000,#4d3000)', emoji: '👑', supply: '100 ta',  price: '1000 ⭐', floor: '2.0 TON',  desc: 'Imperiya toji. Telegram da eng qimmat Empire Mafia Gift NFT. Floor 2 TON.' },
+    { id: 'nft09', cat: 'crown',     rarity: 'epic',      name: 'Crimson Crown',     bg: 'linear-gradient(135deg,#1a0000,#3d0011)', emoji: '🔱', supply: '200 ta',  price: '300 ⭐',  floor: '0.35 TON', desc: 'Qizil toj. Epic darajali imperator belgisi Telegram Gift.' },
+    { id: 'nft10', cat: 'crown',     rarity: 'rare',      name: 'Shadow Ring',       bg: 'linear-gradient(135deg,#0d0d0d,#1a0d2d)', emoji: '💍', supply: '600 ta',  price: '89 ⭐',   floor: '0.06 TON', desc: 'Soya uzugi. Rare darajali unvon belgisi Telegram NFT Gift.' },
+    { id: 'nft11', cat: 'special',   rarity: 'legendary', name: 'Black Market Pass', bg: 'linear-gradient(135deg,#000000,#1a001a)', emoji: '🎟', supply: '200 ta',  price: '600 ⭐',  floor: '0.8 TON',  desc: 'Qora bozorga kirish kartasi. Maxsus imtiyozlar beruvchi Legendary Gift.' },
+    { id: 'nft12', cat: 'special',   rarity: 'epic',      name: 'Night Owl',         bg: 'linear-gradient(135deg,#001a1a,#002d2d)', emoji: '🦉', supply: '400 ta',  price: '180 ⭐',  floor: '0.15 TON', desc: 'Tun boyqushi. Kechki o\'yinlarda bonus beruvchi maxsus NFT.' },
+  ];
+
+  const RARITY_CONFIG = {
+    legendary: { label: 'LEGENDARY', color: '#f6a623', glow: 'rgba(246,166,35,0.5)' },
+    epic:      { label: 'EPIC',      color: '#b794f4', glow: 'rgba(183,148,244,0.45)' },
+    rare:      { label: 'RARE',      color: '#4fd1c5', glow: 'rgba(79,209,197,0.4)'  },
+    common:    { label: 'COMMON',    color: '#718096', glow: 'rgba(113,128,150,0.3)'  },
+  };
+
+  let nftFilter = 'all';
+  const nftGrid = document.getElementById('nftGrid');
+
+  function renderNFT() {
+    if (!nftGrid) return;
+    const items = nftFilter === 'all' ? NFT_ITEMS : NFT_ITEMS.filter(n => n.cat === nftFilter);
+    nftGrid.innerHTML = items.map(n => {
+      const rc = RARITY_CONFIG[n.rarity];
+      return `
+        <div class="em-nft-card" data-rarity="${n.rarity}" data-nft-id="${n.id}"
+             tabindex="0" role="button" aria-label="${n.name}"
+             style="--nft-color:${rc.color};--nft-glow:${rc.glow}">
+          <div class="em-nft-card-bg" style="background:${n.bg}">
+            <div class="em-nft-card-emoji">${n.emoji}</div>
+            <div class="em-nft-rarity-badge">${rc.label}</div>
+          </div>
+          <div class="em-nft-card-info">
+            <div class="em-nft-card-name">${n.name}</div>
+            <div class="em-nft-card-meta">
+              <span class="em-nft-supply">${n.supply}</span>
+              <span class="em-nft-floor">${n.floor}</span>
+            </div>
+            <div class="em-nft-card-price">${n.price}</div>
+          </div>
+        </div>`;
+    }).join('');
+    nftGrid.querySelectorAll('.em-nft-card').forEach(card => {
+      card.addEventListener('click', () => openNFTModal(card.dataset.nftId));
+      card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openNFTModal(card.dataset.nftId); });
+    });
+  }
+
+  document.querySelectorAll('.em-nft-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.em-nft-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      nftFilter = this.dataset.nftFilter;
+      renderNFT();
+    });
+  });
+
+  const nftModal      = document.getElementById('nftModal');
+  const nftModalClose = document.getElementById('nftModalClose');
+
+  function openNFTModal(id) {
+    const n = NFT_ITEMS.find(x => x.id === id);
+    if (!n || !nftModal) return;
+    const rc = RARITY_CONFIG[n.rarity];
+    document.getElementById('nftModalPreview').innerHTML =
+      `<div class="em-nft-modal-bg" style="background:${n.bg}">
+         <div class="em-nft-modal-emoji" style="filter:drop-shadow(0 0 30px ${rc.glow})">${n.emoji}</div>
+       </div>`;
+    document.getElementById('nftModalRarity').textContent = rc.label;
+    document.getElementById('nftModalRarity').style.color = rc.color;
+    document.getElementById('nftModalName').textContent = n.name;
+    document.getElementById('nftModalDesc').textContent = n.desc;
+    document.getElementById('nftModalPrice').innerHTML =
+      `<span>${n.price}</span><small> · Floor: ${n.floor}</small>`;
+    document.getElementById('nftModalSupply').textContent = 'Chiqarilgan: ' + n.supply;
+    const cfg = window.EMPIRE_CONFIG;
+    document.getElementById('nftBuyBtn').href = 'https://fragment.com';
+    nftModal.hidden = false;
+    nftModal.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNFTModal() {
+    if (nftModal) { nftModal.hidden = true; nftModal.setAttribute('aria-hidden', 'true'); }
+    document.body.style.overflow = '';
+  }
+
+  if (nftModalClose) nftModalClose.addEventListener('click', closeNFTModal);
+  if (nftModal) nftModal.addEventListener('click', e => { if (e.target === nftModal) closeNFTModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && nftModal && !nftModal.hidden) closeNFTModal(); });
+
+  renderNFT();
+
+     ============================================================ */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.em-header-links a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = '';
+          link.style.background = '';
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.style.color = 'var(--gold)';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '-60px 0px' });
+
+  sections.forEach(s => navObserver.observe(s));
+
+  console.log('%cEMPIRE MAFIA 👑', 'color:#c9a227;font-size:24px;font-weight:900;font-family:serif');
+  console.log('%cTelegram Mafia O\'yini | 33 Rol | VIP Obuna', 'color:#e8e0d0;font-size:12px');
+
+})();
+
+    { id: 'nft02', cat: 'avatar', rarity: 'epic',      name: 'Qora Qalqon',         emoji: '🛡', price: 60,  desc: 'Qora metall qalqon chegarasi. Epic darajali. VIP foydalanuvchilarga chegirma.' },
+    { id: 'nft03', cat: 'avatar', rarity: 'rare',      name: 'Oltin Doira',          emoji: '⭕', price: 35,  desc: 'Oltin yorqin doira avatar chegarasi. Profilda jilolanib turadi.' },
+    { id: 'nft04', cat: 'avatar', rarity: 'common',    name: 'Kumush Naqsh',         emoji: '🌀', price: 12,  desc: 'Kumush naqshli avatar chegarasi. Yangi o\'yinchilar uchun qulay narx.' },
+
+    // ROL SKINLARI
+    { id: 'nft05', cat: 'skin',   rarity: 'legendary', name: 'Don Maxsus Skin',      emoji: '🤵', price: 150, desc: 'Don roli uchun maxsus qora kostyum. Tunda ko\'rinmas, ammo barchaga ma\'lum — siz DONsiz.' },
+    { id: 'nft06', cat: 'skin',   rarity: 'epic',      name: 'Joker Neon Skin',      emoji: '🃏', price: 80,  desc: 'Joker roli uchun neon rangdagi maxsus skin. Ovoz berish jarayonida alohida ko\'rinadi.' },
+    { id: 'nft07', cat: 'skin',   rarity: 'epic',      name: 'Komissar Oltin Skin',  emoji: '🏅', price: 75,  desc: 'Komissar roli uchun oltin nishonli premium skin. Tekshiruv natijasida maxsus belgi.' },
+    { id: 'nft08', cat: 'skin',   rarity: 'rare',      name: 'Mafia Qizil Skin',     emoji: '🔴', price: 40,  desc: 'Mafia roli uchun qizil rangdagi skin. Kechasi qonga botgan ko\'rinish.' },
+
+    // EFFEKTLAR
+    { id: 'nft09', cat: 'effect', rarity: 'legendary', name: 'Zulmat Effekti',       emoji: '🌑', price: 200, desc: 'Profil atrofida zulmat buluti effekti. Eng noyob effekt — faqat 50 ta mavjud.' },
+    { id: 'nft10', cat: 'effect', rarity: 'epic',      name: 'Oltin Yulduz Effekti', emoji: '✨', price: 90,  desc: 'Profildan oltin yulduzlar sachrab turadi. Har xabarga qo\'shiladi.' },
+    { id: 'nft11', cat: 'effect', rarity: 'rare',      name: 'Muz Muzlash',          emoji: '❄️', price: 45,  desc: 'Profil atrofida muzlash animatsiyasi. Raqiblarni psixologik bosim qiladi.' },
+    { id: 'nft12', cat: 'effect', rarity: 'common',    name: 'Olov Alangasi',        emoji: '🔥', price: 18,  desc: 'Engil olov effekti. Profilga harakat va dinamik ko\'rinish beradi.' },
+
+    // KOLLEKSIYA KARTALARI
+    { id: 'nft13', cat: 'card',   rarity: 'legendary', name: 'Birinchi Imperator',   emoji: '📜', price: 500, desc: 'Empire Mafia tarixidagi birinchi imperator kartasi. Abadiy kolleksiya. Faqat 10 ta mavjud.' },
+    { id: 'nft14', cat: 'card',   rarity: 'epic',      name: 'Urush Kartasi #1',     emoji: '⚔️', price: 100, desc: 'Birinchi klan urushining yodgorlik kartasi. Tarixiy kolleksiya asar.' },
+    { id: 'nft15', cat: 'card',   rarity: 'rare',      name: 'Yangi Mavsum Kartasi', emoji: '🗓', price: 55,  desc: 'Har yangi mavsum chiqadigan maxsus karta. Mavsumiy kollektor narsasi.' },
+    { id: 'nft16', cat: 'card',   rarity: 'common',    name: 'Imperiya Belgisi',     emoji: '🏰', price: 20,  desc: 'Imperiya gerbini aks ettiruvchi standart karta. Yangi o\'yinchilar uchun.' },
+  ];
+
+  const RARITY_CONFIG = {
+    legendary: { label: 'LEGENDARY', color: '#f6a623', glow: 'rgba(246,166,35,0.4)' },
+    epic:      { label: 'EPIC',      color: '#b794f4', glow: 'rgba(183,148,244,0.35)' },
+    rare:      { label: 'RARE',      color: '#4fd1c5', glow: 'rgba(79,209,197,0.35)' },
+    common:    { label: 'COMMON',    color: '#718096', glow: 'rgba(113,128,150,0.25)' },
+  };
+
+  let nftFilter = 'all';
+  const nftGrid = document.getElementById('nftGrid');
+
+  function renderNFT() {
+    if (!nftGrid) return;
+    const items = nftFilter === 'all' ? NFT_ITEMS : NFT_ITEMS.filter(n => n.cat === nftFilter);
+    nftGrid.innerHTML = items.map(n => {
+      const rc = RARITY_CONFIG[n.rarity];
+      return `
+        <div class="em-nft-card" data-rarity="${n.rarity}" data-nft-id="${n.id}"
+             tabindex="0" role="button" aria-label="${n.name}"
+             style="--nft-color:${rc.color};--nft-glow:${rc.glow}">
+          <div class="em-nft-card-img">${n.emoji}</div>
+          <div class="em-nft-rarity-badge">${rc.label}</div>
+          <div class="em-nft-card-name">${n.name}</div>
+          <div class="em-nft-card-price">
+            <span>${n.price} 💎</span>
+          </div>
+        </div>`;
+    }).join('');
+    nftGrid.querySelectorAll('.em-nft-card').forEach(card => {
+      card.addEventListener('click', () => openNFTModal(card.dataset.nftId));
+      card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openNFTModal(card.dataset.nftId); });
+    });
+  }
+
+  document.querySelectorAll('.em-nft-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.em-nft-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      nftFilter = this.dataset.nftFilter;
+      renderNFT();
+    });
+  });
+
+  const nftModal    = document.getElementById('nftModal');
+  const nftModalClose = document.getElementById('nftModalClose');
+
+  function openNFTModal(id) {
+    const n = NFT_ITEMS.find(x => x.id === id);
+    if (!n || !nftModal) return;
+    const rc = RARITY_CONFIG[n.rarity];
+    document.getElementById('nftModalPreview').innerHTML =
+      `<div class="em-nft-modal-emoji" style="text-shadow:0 0 40px ${rc.glow}">${n.emoji}</div>`;
+    document.getElementById('nftModalRarity').textContent = rc.label;
+    document.getElementById('nftModalRarity').style.color = rc.color;
+    document.getElementById('nftModalName').textContent = n.name;
+    document.getElementById('nftModalDesc').textContent = n.desc;
+    document.getElementById('nftModalPrice').textContent = n.price + ' 💎';
+    const cfg = window.EMPIRE_CONFIG;
+    document.getElementById('nftBuyBtn').href = (cfg && cfg.BOT_URL) ? cfg.BOT_URL : '#';
+    nftModal.hidden = false;
+    nftModal.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNFTModal() {
+    if (nftModal) { nftModal.hidden = true; nftModal.setAttribute('aria-hidden', 'true'); }
+    document.body.style.overflow = '';
+  }
+
+  if (nftModalClose) nftModalClose.addEventListener('click', closeNFTModal);
+  if (nftModal) nftModal.addEventListener('click', e => { if (e.target === nftModal) closeNFTModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && nftModal && !nftModal.hidden) closeNFTModal(); });
+
+  renderNFT();
+
+
      ============================================================ */
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.em-header-links a');
