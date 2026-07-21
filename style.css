@@ -481,7 +481,8 @@ img { max-width: 100%; display: block; }
   border-radius: 100px; white-space: nowrap;
 }
 .em-plan-dur { display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem; }
-.em-plan-price { display: block; font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--gold); }
+.em-plan-price { display: block; font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--gold); }
+.em-plan-alt { display: block; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
 .em-vip-card .em-btn { width: 100%; justify-content: center; margin-bottom: 1rem; }
 .em-vip-note { font-size: 0.78rem; color: var(--text-muted); }
 
@@ -760,15 +761,21 @@ img { max-width: 100%; display: block; }
 }
 .em-role-modal-close:hover { border-color: var(--red-light); color: var(--red-light); }
 .em-role-modal-media {
-  background: var(--bg-2); height: 220px;
+  height: 280px;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; position: relative;
+  background: radial-gradient(ellipse at center, rgba(201,162,39,0.08) 0%, var(--bg-2) 70%);
 }
 .em-role-modal-img-real {
-  width: 100%; height: 100%; object-fit: cover;
+  max-width: 100%; max-height: 100%;
+  width: auto; height: 100%;
+  object-fit: contain;
   display: block;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+  transition: transform 0.3s ease;
 }
-.em-role-modal-ph { font-size: 4rem; display: flex; align-items: center; justify-content: center; }
+.em-role-modal-img-real:hover { transform: scale(1.04); }
+.em-role-modal-ph { font-size: 5rem; display: flex; align-items: center; justify-content: center; }
 .em-role-modal-body { padding: 1.5rem; }
 .em-role-modal-tag {
   display: inline-block; font-size: 0.68rem; font-weight: 700;
@@ -782,7 +789,153 @@ img { max-width: 100%; display: block; }
 .em-role-modal-meta { font-size: 0.78rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-2); }
 
 /* ============================================================
+   NFT MARKET
+   ============================================================ */
+.em-nft-sec { background: radial-gradient(ellipse 60% 40% at 30% 60%, rgba(106,13,173,0.05), transparent); }
+.em-nft-filters {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  justify-content: center; margin-bottom: 2rem;
+}
+.em-nft-tab {
+  padding: 0.4rem 1rem; border-radius: 100px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-2); font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; transition: var(--t);
+}
+.em-nft-tab:hover { border-color: var(--gold); color: var(--gold); }
+.em-nft-tab.active { background: var(--gold); color: #050508; border-color: var(--gold); }
+
+.em-nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.em-nft-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--r) + 2px);
+  padding: 1.25rem 1rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: var(--t);
+  overflow: hidden;
+}
+.em-nft-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, var(--nft-glow, transparent), transparent 70%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.em-nft-card:hover::before { opacity: 1; }
+.em-nft-card:hover {
+  border-color: var(--nft-color, var(--gold));
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px var(--nft-glow, rgba(0,0,0,0.3));
+}
+.em-nft-card-bg {
+  height: 160px; border-radius: 10px 10px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.em-nft-card-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, var(--nft-glow, transparent) 0%, transparent 70%);
+}
+.em-nft-card-emoji {
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 16px var(--nft-glow, rgba(0,0,0,0.4)));
+  transition: transform 0.35s ease;
+  position: relative; z-index: 1;
+}
+.em-nft-card:hover .em-nft-card-emoji { transform: scale(1.2) translateY(-6px); }
+.em-nft-card-info {
+  padding: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.em-nft-card-meta {
+  display: flex; justify-content: space-between;
+  font-size: 0.68rem; color: var(--text-muted);
+  margin: 0.25rem 0 0.5rem;
+}
+.em-nft-supply { }
+.em-nft-floor { color: var(--nft-color, var(--gold)); font-weight: 600; }
+.em-nft-rarity-badge {
+  display: inline-block; font-size: 0.6rem; font-weight: 800;
+  letter-spacing: 0.12em; padding: 2px 8px; border-radius: 100px;
+  margin-bottom: 0.5rem;
+  color: var(--nft-color, var(--gold));
+  border: 1px solid var(--nft-color, var(--gold));
+  background: transparent;
+}
+.em-nft-card-name {
+  font-size: 0.82rem; font-weight: 700;
+  color: var(--text); margin-bottom: 0.5rem; line-height: 1.3;
+}
+.em-nft-card-price {
+  font-family: var(--font-display); font-size: 0.95rem;
+  font-weight: 700; color: var(--gold);
+}
+
+/* NFT Modal */
+.em-nft-modal-backdrop {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+}
+.em-nft-modal-backdrop[hidden] { display: none; }
+.em-nft-modal {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: calc(var(--r) + 4px); width: 100%; max-width: 420px;
+  overflow: hidden; position: relative;
+  animation: roleModalIn 0.25s ease;
+}
+.em-nft-modal-close {
+  position: absolute; top: 1rem; right: 1rem; z-index: 2;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--surface-2); border: 1px solid var(--border);
+  font-size: 1.2rem; color: var(--text-2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: var(--t);
+}
+.em-nft-modal-close:hover { border-color: var(--red-light); color: var(--red-light); }
+.em-nft-modal-preview {
+  height: 200px; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(201,162,39,0.06), var(--bg-2));
+}
+.em-nft-modal-bg {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.em-nft-modal-emoji { font-size: 6rem; animation: nftFloat 3s ease-in-out infinite; }
+@keyframes nftFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.em-nft-modal-body { padding: 1.5rem; }
+.em-nft-modal-rarity {
+  display: inline-block; font-size: 0.68rem; font-weight: 800;
+  letter-spacing: 0.12em; margin-bottom: 0.5rem;
+}
+.em-nft-modal-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; }
+.em-nft-modal-desc { color: var(--text-2); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1rem; }
+.em-nft-modal-supply {
+  font-size: 0.78rem; color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-2); border-radius: 6px;
+  display: inline-block;
+}
+.em-nft-modal-price {
+  font-family: var(--font-display); font-size: 1.6rem; font-weight: 900;
+  color: var(--gold); margin-bottom: 1.25rem;
+}
+.em-nft-modal-price small { font-size: 0.9rem; color: var(--text-muted); font-family: var(--font-body); font-weight: 400; }
+.em-nft-modal-note { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.75rem; text-align: center; }
+
+/* ============================================================
    FOOTER
+
    ============================================================ */
 .em-footer {
   border-top: 1px solid var(--border);
